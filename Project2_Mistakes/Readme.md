@@ -16,6 +16,9 @@
 
 ![image](https://user-images.githubusercontent.com/36688218/47194878-ca64b780-d376-11e8-8830-fd4fbc8f7332.png)
 
+![image](https://user-images.githubusercontent.com/36688218/47194944-20395f80-d377-11e8-8219-f7d13e83db1a.png)
+
+
 
 - Types of Charts :
 ![image](https://user-images.githubusercontent.com/36688218/47100588-7f9f4e80-d255-11e8-8f29-13c71dee4ec1.png)
