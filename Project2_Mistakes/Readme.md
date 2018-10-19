@@ -14,6 +14,9 @@
 
 7 . If you are interested in anlayzing only a particular values then reason must be given for the analysis.
 
+![image](https://user-images.githubusercontent.com/36688218/47194878-ca64b780-d376-11e8-8830-fd4fbc8f7332.png)
+
+
 - Types of Charts :
 ![image](https://user-images.githubusercontent.com/36688218/47100588-7f9f4e80-d255-11e8-8f29-13c71dee4ec1.png)
 
