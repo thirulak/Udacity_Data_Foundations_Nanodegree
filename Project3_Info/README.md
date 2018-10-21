@@ -1,4 +1,7 @@
 # Project3_Info :
+DB browser for sqlite : http://sqlitebrowser.org/
+
+DB: https://archive.codeplex.com/?p=chinookdatabase
 
 ERD model of the Chinook DB: 
 
