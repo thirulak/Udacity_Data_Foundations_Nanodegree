@@ -1,22 +1,47 @@
-<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Meenakshi/Desktop/udacity/data udacity/chinook_db/chinook.db" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4520"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Album"/><default_encoding codec=""/><browsetable_info data="AAAAAA=="/></tab_browse><tab_sql><sql name="SQL 1">select count(name) FROM Track WHERE Composer = 'U2' ;</sql><sql name="First.sql">-- Question set:1
--- Question 1: Which countries have the most Invoices? 
-select Count(InvoiceId) AS Invoice  , BillingCountry 
-		FROM Invoice 
-		GROUP BY BillingCountry
-		ORDER BY Invoice DESC;</sql><sql name="SQL 2">-- Question 2:Which city has the best customers? 
--- We would like to throw a promotional Music Festival in the city we made the most money. Write a query that returns the 1 city that has the highest sum of invoice totals. Return both the city name and the sum of all invoice totals.
-
-select SUM(Total) , BillingCity
-		FROM Invoice
-		GROUP BY BillingCity 
-		ORDER BY Total DESC
-		LIMIT 1;</sql><sql name="SQL 3">-- Question 3 :  Who is the best customer?
--- The customer who has spent the most money will be declared the best customer. Build a query that returns the person who has spent the most money. I found the solution by linking the following three: Invoice, InvoiceLine, and Customer tables to retrieve this information, but you can probably do it with fewer! 
-
-select customer.CustomerId, SUM(invoiceline.unitprice) as total 
-	from Customer 
-	join Invoice on customer.customerid = invoice.customerid 
-	join InvoiceLine on invoice.invoiceid = invoiceline.invoiceid 
-	group by customer.customerid 
-	order by total desc
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Meenakshi/Desktop/udacity/data udacity/chinook_db/chinook.db" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4520"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Album"/><default_encoding codec=""/><browsetable_info data="AAAAAA=="/></tab_browse><tab_sql><sql name="SQL 1">select count(name) FROM Track WHERE Composer = 'U2' ;</sql><sql name="First.sql">-- Question set:1
+
+-- Question 1: Which countries have the most Invoices? 
+
+select Count(InvoiceId) AS Invoice  , BillingCountry 
+
+		FROM Invoice 
+
+		GROUP BY BillingCountry
+
+		ORDER BY Invoice DESC;</sql>
+	
+<sql name="SQL 2">-- Question 2:Which city has the best customers? 
+
+-- We would like to throw a promotional Music Festival in the city we made the most money. Write a query that returns the 1 city that has the highest sum of invoice totals. Return both the city name and the sum of all invoice totals.
+
+
+
+select SUM(Total) , BillingCity
+
+		FROM Invoice
+
+		GROUP BY BillingCity 
+
+		ORDER BY Total DESC
+
+		LIMIT 1;</sql>
+	
+<sql name="SQL 3">-- Question 3 :  Who is the best customer?
+
+-- The customer who has spent the most money will be declared the best customer. Build a query that returns the person who has spent the most money. I found the solution by linking the following three: Invoice, InvoiceLine, and Customer tables to retrieve this information, but you can probably do it with fewer! 
+
+
+
+select customer.CustomerId, SUM(invoiceline.unitprice) as total 
+
+	from Customer 
+
+	join Invoice on customer.customerid = invoice.customerid 
+
+	join InvoiceLine on invoice.invoiceid = invoiceline.invoiceid 
+
+	group by customer.customerid 
+
+	order by total desc
+
 	LIMIT 1;</sql><current_tab id="3"/></tab_sql></sqlb_project>
