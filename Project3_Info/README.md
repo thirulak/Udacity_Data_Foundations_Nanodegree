@@ -1,5 +1,5 @@
 # Project3_Info :
-DB browser for sqlite : http://sqlitebrowser.org/
+DB browser for sqlite : http://sqlitebrowser.org/ (Mysql syntax is followed)
 
 DB: https://archive.codeplex.com/?p=chinookdatabase
 
