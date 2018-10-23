@@ -9,8 +9,8 @@ Select distinct C.firstname , C.Lastname , C.Email , G.Name
 		JOIN InvoiceLine IL
 		ON I.InvoiceId = IL.InvoiceLineId
 		JOIN Track T
-		ON T.TrackId = I.InvoiceId
-		WHERE G.Name = 'Rock' ;
+		ON T.TrackId = IL.TrackId
+		WHERE G.Name = "Rock" ;
 		 
 		 </sql><sql name="SQL 2">-- Question 2 :Who is writing the rock music?
 -- Now that we know that our customers love rock music, we can decide which musicians to invite to play at the concert.
