@@ -55,23 +55,21 @@ GROUP BY C.Country
 ORDER BY Maximum_spent DESC
 
 LIMIT 10;</sql>
-<sql name="SQL 3">SELECT  I.BillingCountry ,AL.Title, SUM(I.Total*IL.Unitprice) AS Total  
-
-	FROM Invoice I 
-
-	JOIN InvoiceLine IL
-
-	ON IL.InvoiceLineId = I.InvoiceId 
-
-	JOIN Track t ON IL.TrackId = T.TrackId 
-
-	JOIN Album AL ON AL.AlbumId = T.AlbumId
-
-	GROUP BY I.InvoiceId
-
-	ORDER BY I.Total DESC
-
-	LIMIT 10;</sql>
+<sql name="SQL 3">
+-- What is the Earning of Artist in Jazz Genre ?
+SELECT A.name, SUM(IL.UnitPrice * IL.Quantity) AS MoneyEarned
+FROM Artist A
+JOIN Album AL
+ON A.ArtistId = AL.ArtistId
+JOIN Track T
+ON AL.AlbumId = T.AlbumId
+JOIN Genre G
+ON T.GenreId = G.GenreId
+JOIN InvoiceLine IL
+ON T.TrackId = IL.TrackId
+where G.Name = "Jazz" 
+GROUP BY A.Name
+ORDER BY MoneyEarned DESC ;</sql>
 <sql name="SQL 4">-- Query 4 : Which artist to be called to play Metal
 
 SELECT A.name , COUNT(T.Trackid) Songs 
