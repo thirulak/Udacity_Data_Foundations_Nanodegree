@@ -16,12 +16,13 @@ Select distinct C.firstname , C.Lastname , C.Email , G.Name
 -- Now that we know that our customers love rock music, we can decide which musicians to invite to play at the concert.
 -- Let's invite the artists who have written the most rock music in our dataset. Write a query that returns the Artist name and total track count of the top 10 rock bands.
 
-SELECT a.name Artist, COUNT(t.Trackid) Songs FROM Artist a 
-	JOIN Album al ON a.ArtistId = al.ArtistId 
-	JOIN Track t ON t.AlbumId = al.AlbumId 
-	JOIN Genre g ON G.GenreId = t.GenreId 
-	WHERE g.Name = "Rock"; 
-	GROUP BY Artist 
+SELECT A.name , COUNT(T.Trackid) Songs 
+	FROM Artist A 
+	JOIN Album AL ON A.ArtistId = AL.ArtistId 
+	JOIN Track T ON T.AlbumId = AL.AlbumId 
+	JOIN Genre G ON G.GenreId = T.GenreId 
+	WHERE G.Name = "Rock" 
+	GROUP BY A.name
 	ORDER BY Songs DESC 
 	LIMIT 10;
 </sql><sql name="SQL 5">-- Question 3
