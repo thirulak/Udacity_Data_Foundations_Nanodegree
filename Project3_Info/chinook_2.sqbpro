@@ -20,7 +20,7 @@ SELECT a.name Artist, COUNT(t.Trackid) Songs FROM Artist a
 	JOIN Album al ON a.ArtistId = al.ArtistId 
 	JOIN Track t ON t.AlbumId = al.AlbumId 
 	JOIN Genre g ON G.GenreId = t.GenreId 
-	WHERE g.Name = &quot;Rock&quot; 
+	WHERE g.Name = "Rock"; 
 	GROUP BY Artist 
 	ORDER BY Songs DESC 
 	LIMIT 10;
