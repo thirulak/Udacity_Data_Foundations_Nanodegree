@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Meenakshi/Desktop/udacity/data udacity/chinook_db/chinook.db" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4520"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Track"/><default_encoding codec=""/><browsetable_info data="AAAABwAAAAoAVAByAGEAYwBrAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAABYASQBuAHYAbwBpAGMAZQBMAGkAbgBlAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAAA4ASQBuAHYAbwBpAGMAZQAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAKAEcAZQBuAHIAZQAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAQAEMAdQBzAHQAbwBtAGUAcgAAAAAAAAAAAAAAAAAAAAAAAAAAAP//////////AAAAAP////8AAAAMAEEAcgB0AGkAcwB0AAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAAAoAQQBsAGIAdQBtAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////w=="/></tab_browse><tab_sql><sql name="SQL 1">-- Question 1 
+-- Use your query to return the email, first name, last name, and Genre of all Rock Music listeners. Return your list ordered alphabetically by email address starting with A. Can you find a way to deal with duplicate email addresses so no one receives multiple emails?
+
+Select distinct C.firstname , C.Lastname , C.Email , G.Name 
+		FROM Customer C
+		JOIN Genre G
+		ON C.CustomerId = I.InvoiceId
+		JOIN Invoice I
+		JOIN InvoiceLine IL
+		ON I.InvoiceId = IL.InvoiceLineId
+		JOIN Track T
+		ON T.TrackId = I.InvoiceId
+		WHERE G.Name = 'Rock' ;
+		 
+		 </sql><sql name="SQL 2">-- Question 2 :Who is writing the rock music?
+-- Now that we know that our customers love rock music, we can decide which musicians to invite to play at the concert.
+-- Let's invite the artists who have written the most rock music in our dataset. Write a query that returns the Artist name and total track count of the top 10 rock bands.
+
+SELECT a.name Artist, COUNT(t.Trackid) Songs FROM Artist a 
+	JOIN Album al ON a.ArtistId = al.ArtistId 
+	JOIN Track t ON t.AlbumId = al.AlbumId 
+	JOIN Genre g ON G.GenreId = t.GenreId 
+	WHERE g.Name = &quot;Rock&quot; 
+	GROUP BY Artist 
+	ORDER BY Songs DESC 
+	LIMIT 10;
+</sql><sql name="SQL 5">-- Question 3
+-- First, find which artist has earned the most according to the InvoiceLines?
+-- Now use this artist to find which customer spent the most on this artist.
+-- For this query, you will need to use the Invoice, InvoiceLine, Track, Customer, Album, and Artist tables.
+
+SELECT Artist.Name as Artist_Name, SUM(InvoiceLine.UnitPrice) as Total 
+	FROM Customer 
+	JOIN Invoice 
+	ON Invoice.CustomerId = Customer.CustomerId 
+	JOIN InvoiceLine 
+	ON Invoice.InvoiceId = InvoiceLine.InvoiceId 
+	JOIN Track 
+	ON Track.TrackId = InvoiceLine.TrackId 
+	JOIN Album 
+	ON Track.AlbumId = Album.AlbumId 
+	JOIN Artist 
+	ON Artist.ArtistId = Album.ArtistId 
+	GROUP BY Artist_Name ORDER BY Total DESC</sql><sql name="SQL 6">-- The customer with the highest total invoice amount?
+select a.Name as Name, sum(il.unitprice) as AmountSpent, c.Customerid, c.Firstname, c.lastname from Artist a 
+	Join Album al 
+	ON al.Artistid = a.Artistid 
+	Join Track t 
+	ON t.Albumid = al.albumid 
+	Join InvoiceLine il 
+	ON il.Trackid = t.Trackid 
+	Join Invoice i 
+	ON i.Invoiceid = il.Invoiceid 
+	Join Customer c 
+	ON c.Customerid = i.Customerid 
+	WHERE a.name = 'Iron Maiden' 
+	Group by c.Customerid 
+	Order by AmountSpent desc</sql><current_tab id="3"/></tab_sql></sqlb_project>
