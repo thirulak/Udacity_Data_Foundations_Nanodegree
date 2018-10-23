@@ -24,35 +24,67 @@ SELECT a.name Artist, COUNT(t.Trackid) Songs FROM Artist a
 	GROUP BY Artist 
 	ORDER BY Songs DESC 
 	LIMIT 10;
-</sql><sql name="SQL 5">-- Question 3
--- First, find which artist has earned the most according to the InvoiceLines?
--- Now use this artist to find which customer spent the most on this artist.
--- For this query, you will need to use the Invoice, InvoiceLine, Track, Customer, Album, and Artist tables.
-
-SELECT Artist.Name as Artist_Name, SUM(InvoiceLine.UnitPrice) as Total 
-	FROM Customer 
-	JOIN Invoice 
-	ON Invoice.CustomerId = Customer.CustomerId 
-	JOIN InvoiceLine 
-	ON Invoice.InvoiceId = InvoiceLine.InvoiceId 
-	JOIN Track 
-	ON Track.TrackId = InvoiceLine.TrackId 
-	JOIN Album 
-	ON Track.AlbumId = Album.AlbumId 
-	JOIN Artist 
-	ON Artist.ArtistId = Album.ArtistId 
-	GROUP BY Artist_Name ORDER BY Total DESC</sql><sql name="SQL 6">-- The customer with the highest total invoice amount?
-select a.Name as Name, sum(il.unitprice) as AmountSpent, c.Customerid, c.Firstname, c.lastname from Artist a 
-	Join Album al 
-	ON al.Artistid = a.Artistid 
-	Join Track t 
-	ON t.Albumid = al.albumid 
-	Join InvoiceLine il 
-	ON il.Trackid = t.Trackid 
-	Join Invoice i 
-	ON i.Invoiceid = il.Invoiceid 
-	Join Customer c 
-	ON c.Customerid = i.Customerid 
-	WHERE a.name = 'Iron Maiden' 
-	Group by c.Customerid 
+</sql><sql name="SQL 5">-- Question 3
+
+-- First, find which artist has earned the most according to the InvoiceLines?
+
+-- Now use this artist to find which customer spent the most on this artist.
+
+-- For this query, you will need to use the Invoice, InvoiceLine, Track, Customer, Album, and Artist tables.
+
+
+
+SELECT Artist.Name as Artist_Name, SUM(InvoiceLine.UnitPrice) as Total 
+
+	FROM Customer 
+
+	JOIN Invoice 
+
+	ON Invoice.CustomerId = Customer.CustomerId 
+
+	JOIN InvoiceLine 
+
+	ON Invoice.InvoiceId = InvoiceLine.InvoiceId 
+
+	JOIN Track 
+
+	ON Track.TrackId = InvoiceLine.TrackId 
+
+	JOIN Album 
+
+	ON Track.AlbumId = Album.AlbumId 
+
+	JOIN Artist 
+
+	ON Artist.ArtistId = Album.ArtistId 
+
+	GROUP BY Artist_Name ORDER BY Total DESC</sql>
+<sql name="SQL 6">-- The customer with the highest total invoice amount?
+
+select a.Name as Name, sum(il.unitprice) as AmountSpent, c.Customerid, c.Firstname, c.lastname from Artist a 
+
+	Join Album al 
+
+	ON al.Artistid = a.Artistid 
+
+	Join Track t 
+
+	ON t.Albumid = al.albumid 
+
+	Join InvoiceLine il 
+
+	ON il.Trackid = t.Trackid 
+
+	Join Invoice i 
+
+	ON i.Invoiceid = il.Invoiceid 
+
+	Join Customer c 
+
+	ON c.Customerid = i.Customerid 
+
+	WHERE a.name = 'Iron Maiden' 
+
+	Group by c.Customerid 
+
 	Order by AmountSpent desc</sql><current_tab id="3"/></tab_sql></sqlb_project>
