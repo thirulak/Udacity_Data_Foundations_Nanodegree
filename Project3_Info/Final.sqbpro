@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Meenakshi/Desktop/udacity/data udacity/chinook_db/chinook.db" foreign_keys="1"/><window><current_tab id="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="4520"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="Genre"/><default_encoding codec=""/><browsetable_info data="AAAACwAAAAoAVAByAGEAYwBrAAAAAAAAAAAAAAAAAAAAAgAAAAUAAAAEADIAMQAAAAMAAAAAAAAAAAD//////////wAAAAD/////AAAAGgBQAGwAYQB5AGwAaQBzAHQAVAByAGEAYwBrAAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAABAAUABsAGEAeQBsAGkAcwB0AAAAAAAAAAAAAAAAAAAAAAAAAAAA//////////8AAAAA/////wAAABIATQBlAGQAaQBhAFQAeQBwAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////AAAAFgBJAG4AdgBvAGkAYwBlAEwAaQBuAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////AAAADgBJAG4AdgBvAGkAYwBlAAAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAAAD//////////wAAAAD/////AAAACgBHAGUAbgByAGUAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////AAAAEABFAG0AcABsAG8AeQBlAGUAAAAAAAAAAAAAAAAAAAABAAAABgAAAAAAAAAAAP//////////AAAAAP////8AAAAQAEMAdQBzAHQAbwBtAGUAcgAAAAAAAAAAAAAAAAAAAAEAAAAFAAAAAAAAAAAA//////////8AAAAA/////wAAAAwAQQByAHQAaQBzAHQAAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////AAAACgBBAGwAYgB1AG0AAAAAAAAAAAAAAAAAAAAAAAAAAAD//////////wAAAAD/////"/></tab_browse><tab_sql>
+<sql name="SQL 1">-- Query 1: How many songs do artist have in Jazz Genre
+
+SELECT  A.Name, COUNT(T.TrackId) AS Songs
+
+FROM Artist A
+
+JOIN Album AL
+
+ON A.ArtistId = AL.ArtistId
+
+JOIN Track T
+
+ON AL.AlbumId = T.AlbumId
+
+JOIN Genre G
+
+ON T.GenreId = G.GenreId
+
+WHERE G.name = &quot;Jazz&quot;
+
+GROUP BY A.name
+
+ORDER BY Songs DESC
+
+LIMIT 10 ;
+
+</sql>
+<sql name="SQL 2">-- Which country has spent the highest in Jazz genre 
+
+SELECT C.Country,G.Name,SUM(I.total) AS Maximum_spent
+
+FROM Customer C
+
+JOIN Invoice I
+
+ON I.CustomerId = C.CustomerId
+
+JOIN InvoiceLine IL
+
+ON IL.InvoiceId = I.InvoiceId
+
+JOIN Track T
+
+  ON T.TrackId = IL.TrackId
+
+JOIN Genre G
+
+  ON G.GenreId = T.GenreId
+
+WHERE G.Name = &quot;Jazz&quot;
+
+GROUP BY C.Country
+
+ORDER BY Maximum_spent DESC
+
+LIMIT 10;</sql>
+<sql name="SQL 3">
+-- What is the Earning of Artist in Jazz Genre ?
+SELECT A.name, SUM(IL.UnitPrice * IL.Quantity) AS MoneyEarned
+FROM Artist A
+JOIN Album AL
+ON A.ArtistId = AL.ArtistId
+JOIN Track T
+ON AL.AlbumId = T.AlbumId
+JOIN Genre G
+ON T.GenreId = G.GenreId
+JOIN InvoiceLine IL
+ON T.TrackId = IL.TrackId
+where G.Name = "Jazz" 
+GROUP BY A.Name
+ORDER BY MoneyEarned DESC ;</sql>
+<sql name="SQL 4">-- Query 4 : Which artist to be called to play Metal
+
+SELECT A.name , COUNT(T.Trackid) Songs 
+
+	FROM Artist A 
+
+	JOIN Album AL ON A.ArtistId = AL.ArtistId 
+
+	JOIN Track T ON T.AlbumId = AL.AlbumId 
+
+	JOIN Genre G ON G.GenreId = T.GenreId 
+
+	WHERE G.Name = &quot;Metal&quot; 
+
+	GROUP BY A.name
+
+	ORDER BY Songs DESC ;</sql><current_tab id="3"/></tab_sql></sqlb_project>
