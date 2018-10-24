@@ -1,0 +1,59 @@
+-- Query 1: How many songs do artist have in Jazz Genre?
+
+SELECT  A.Name, COUNT(T.TrackId) AS Songs
+FROM Artist A
+JOIN Album AL
+ON A.ArtistId = AL.ArtistId
+JOIN Track T
+ON AL.AlbumId = T.AlbumId
+JOIN Genre G
+ON T.GenreId = G.GenreId
+WHERE G.name = "Jazz"
+GROUP BY A.name
+ORDER BY Songs DESC
+LIMIT 10 ;
+
+-- Query 2:Which country has spent the highest in Jazz genre ?
+
+SELECT C.Country,G.Name,SUM(I.total) AS Maximum_spent
+FROM Customer C
+JOIN Invoice I
+ON I.CustomerId = C.CustomerId
+JOIN InvoiceLine IL
+ON IL.InvoiceId = I.InvoiceId
+JOIN Track T
+ON T.TrackId = IL.TrackId
+JOIN Genre G
+ON G.GenreId = T.GenreId
+WHERE G.Name = "Jazz"
+GROUP BY C.Country
+ORDER BY Maximum_spent DESC
+LIMIT 10;
+
+-- Query 3:What is the Earning of Artist in Jazz Genre ?
+
+SELECT A.name, SUM(IL.UnitPrice * IL.Quantity) AS MoneyEarned
+FROM Artist A
+JOIN Album AL
+ON A.ArtistId = AL.ArtistId
+JOIN Track T
+ON AL.AlbumId = T.AlbumId
+JOIN Genre G
+ON T.GenreId = G.GenreId
+JOIN InvoiceLine IL
+ON T.TrackId = IL.TrackId
+where G.Name = "Jazz" 
+GROUP BY A.Name
+ORDER BY MoneyEarned DESC ;
+
+-- Query 4 : Which artist has to be invited to play Metal?
+
+SELECT A.name , COUNT(T.Trackid) Songs 
+FROM Artist A 
+JOIN Album AL ON A.ArtistId = AL.ArtistId 
+JOIN Track T ON T.AlbumId = AL.AlbumId 
+JOIN Genre G ON G.GenreId = T.GenreId 
+WHERE G.Name = &quot;Metal&quot; 
+GROUP BY A.name
+ORDER BY Songs DESC ;
+
